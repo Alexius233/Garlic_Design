@@ -1,5 +1,6 @@
 # Garlic_Design 算法课设
 
+![bigbrother](pic/big_brother.jpg)
 
 ## 函数描述如下
 ### 一. 文件读写类
