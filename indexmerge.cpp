@@ -6,7 +6,7 @@ using namespace std;
 vector<vector<int>> merge()
 {
     ifstream file;
-    file.open("C:/Users/yzc/Desktop/garlic/merge/test.txt", ios::in );  // 开文件用于读取
+    file.open("C:/Users/yzc/Desktop/garlic/merge/test.txt", ios::in );  // 开文件用于读取,截取的finalsortedfile
 
     if (!file.is_open())
         cout << "打开文件失败" << endl;
@@ -15,18 +15,42 @@ vector<vector<int>> merge()
     vector<vector<int>>indexmatrix;
     int item[2] = {-1 , -1};
     int wordnumber = -1;
+    int wordindex = 0;
+    int webindex = 0;
+    bool ifblank = false;
     string line;
 
     if (file.is_open())
     {
         while ( getline (file,line) )
         {
-            item[0] = int(line[0]) - 48;
+            int size = line.size();
 
+            for(int i = 0; i < size; i++)
+            {
+                if(line[i] != ' ' && ifblank == false)
+                    wordindex = wordindex * 10 + int(line[i]);
 
-            item[1] = int(line[1]) - 48;
-            //cout<< line <<endl;
-            //cout<< line[2] <<endl;
+                if (line[i] == ' ')
+                {
+                    ifblank = true;
+                    continue;
+                }
+
+                if(line[i] != ' ' && ifblank == true)
+                    webindex = webindex * 10 + int(line[i]);
+
+                if(i == size - 1)
+                {
+                    item[0] = wordindex;
+                    item[1] = webindex;
+                    ifblank = false;
+                    wordindex = 0;
+                    webindex = 0;
+                }
+
+            }
+
 
             if(item[0] != wordnumber)
             {
