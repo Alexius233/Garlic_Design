@@ -71,7 +71,7 @@ vector<vector<int>> merge()
         file.close(); // 关
     }
 
-    //return indexmatrix;
+    return indexmatrix;
 
 }
 
